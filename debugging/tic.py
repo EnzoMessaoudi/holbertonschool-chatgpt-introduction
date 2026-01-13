@@ -28,12 +28,19 @@ def check_winner(board):
 
     return False
 
+def is_draw(board):
+    for row in board:
+        if " " in row:
+            return False
+    return True
+
 def tic_tac_toe():
     board = [[" "]*3 for _ in range(3)]
     player = "X"
-    while not check_winner(board):
+
+    while not check_winner(board) and not is_draw(board):
         print_board(board)
-        
+
         while True:
             try:
                 row = int(input(f"Enter row (0, 1, or 2) for player {player}: "))
@@ -53,7 +60,9 @@ def tic_tac_toe():
             player = "O" if player == "X" else "X"
 
     print_board(board)
-    print(f"Player {player} wins!")
-
+    if check_winner(board):
+        print(f"Player {player} wins!")
+    else:
+        print("It's a draw!")
 
 tic_tac_toe()
