@@ -49,7 +49,8 @@ def tic_tac_toe():
             except ValueError:
                 print("Invalid input. Please enter a number (0, 1, or 2).")
 
-        player = "O" if player == "X" else "X"
+        if not check_winner(board):
+            player = "O" if player == "X" else "X"
 
     print_board(board)
     print(f"Player {player} wins!")
